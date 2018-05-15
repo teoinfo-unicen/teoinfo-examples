@@ -1,0 +1,21 @@
+//****************************************************************************************//
+//* Ejemplo de códgio para cargar y guardar archivos de texto usando codificación UTF-16 *//
+//****************************************************************************************//
+
+// Guardar archivo txt utf-16
+OutputStream outputStream = new FileOutputStream(outputfilepath);
+Writer outputStreamWriter = new OutputStreamWriter(outputStream, "UTF-16");
+outputStreamWriter.write(encodedSequence); // 1's y 0's codificados en un String
+outputStreamWriter.close();
+
+.
+.
+.
+
+// Cargar datos de archivo txt utf-16
+InputStream inputStream = new FileInputStream(outputfilepath);
+Reader inputStreamWriter = new InputStreamReader(inputStream, "UTF-16");
+// ...
+char[] cbuf = new char[2048];
+// NOTA: Leer la documentación del método read para entender como funciona 
+int nChars = inputStreamWriter.read(cbuf); 
