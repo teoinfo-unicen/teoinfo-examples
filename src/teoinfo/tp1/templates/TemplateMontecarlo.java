@@ -4,23 +4,25 @@ public class TemplateMontecarlo {
 	
 	public static void main(String[] args) 
 	{
-		float prob = (new TemplateMontecarlo()).CalcularProbabilidadSumaDados(6);
+		float prob = (new TemplateMontecarlo()).CalcularProbabilidadSumaDados(2);
 		System.out.println("La probabilidad calculada es " + prob);
 	}
 	
 	private int ArrojarDado() 
 	{
-		float[] probAcumulada = 
-				new float[] {1f/6, 2f/6, 3f/6, 4f/6, 5f/6, 1f};
+		// Dado virtual
+		float[] probAcumulada = new float[] {1f/6, 2f/6, 3f/6, 4f/6, 5f/6, 1f};
+		
 		float prob = (float) Math.random();
-		for (int i = 0; i < probAcumulada.length; i++) 
+		for (int i = 1; i <= probAcumulada.length; i++) 
 		{
-			if (prob < probAcumulada[i]) 
+			if (prob < probAcumulada[i-1]) 
 			{
-				return i+1;
+				return i;
 			}
 		}
-		return -1;
+		
+		return 1;
 	}
 			
 	public float CalcularProbabilidadSumaDados(int suma)
@@ -49,6 +51,6 @@ public class TemplateMontecarlo {
 	
 	private boolean Converge(float probActual, float probAnterior) 
 	{
-		return (Math.abs(probActual-probAnterior) < 0.0001f);
+		return (Math.abs(probActual-probAnterior) < 0.00000001f);
 	}
 }
